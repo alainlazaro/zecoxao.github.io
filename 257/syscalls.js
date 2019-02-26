@@ -5,26 +5,26 @@ window.memcalls = [];
 /* These are the offsets in libkernel for system call wrappers */
 window.syscallMap =
 {
-  '4.05':
+  '2.57':
   {
-    3: 0x25F0,
-    4: 0x2730,
-    5: 0x2570,
-    6: 0x24D0,
-    20: 0x06F0,
-    23: 0x0710,
-    24: 0x0730,
-    54: 0x0970, // Heap spray via sys_ioctl
-    97: 0x0B70,
-    98: 0x24F0,
-    203: 0x1030, // Prefaulting
-    477: 0x27B0, // sys_mmap
-    557: 0x1AF0, // Kernel Exploit Free P1 "sys_namedobj_create"
-    558: 0x1B10, // Kernel Exploit Free P3 "sys_namedobj_delete"
-    601: 0x1E70, // Kernel Exploit Free P2 "sys_mdbg_service",
-    632: 0x21D0, // Kernel Exploit Leak P1 "sys_thr_suspend_ucontext"
-    633: 0x21F0, // Kernel Exploit Leak P3 "sys_thr_resume_ucontext"
-    634: 0x2210, // Kernel Exploit Leak P2 "sys_thr_get_ucontext"
+    3: 0xC660,//read
+    4: 0xC680,//write
+    5: 0xC6A0,//open
+    6: 0xC6C0,//close
+    20: 0xC820,//getpid
+    23: 0xC880,//setuid
+    24: 0xC8A0,//getuid
+    54: 0xCBE0, // Heap spray via sys_ioctl 
+    97: 0xCF20, //socket
+    98: 0xCF40, //connect
+    203: 0xD440, // Prefaulting, mlock
+    477: 0xCD00, // sys_mmap mmap_0
+    557: 0x1AF0, // Kernel Exploit Free P1 "sys_namedobj_create" _3CNY4Z0Luc8_C_A, not ported
+    558: 0x1B10, // Kernel Exploit Free P3 "sys_namedobj_delete" E7CmfLfeSuQ_C_A, not ported
+    601: 0xE800, // Kernel Exploit Free P2 "sys_mdbg_service",
+    632: 0x21D0, // Kernel Exploit Leak P1 "sys_thr_suspend_ucontext", not ported
+    633: 0x21F0, // Kernel Exploit Leak P3 "sys_thr_resume_ucontext", not ported
+    634: 0x2210, // Kernel Exploit Leak P2 "sys_thr_get_ucontext", not ported
   }
 }
 
