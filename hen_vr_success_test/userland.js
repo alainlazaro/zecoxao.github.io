@@ -524,10 +524,7 @@ window.stage2_ = function () {
   // Test if the kernel is already patched
   var test = p.syscall("sys_setuid", 0);
   if (test != '0') {
-    // alert("Kernel not patched, run kernel exploit");
-    sc = document.createElement("script");
-    sc.src = "kernel.js";
-    document.body.appendChild(sc);
+    while (!kernExploit()) {}
   } else {
     //alert("Kernel patched, launch cool stuff");
 	
