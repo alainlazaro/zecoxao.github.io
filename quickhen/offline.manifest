@@ -1,9 +1,0 @@
-CACHE MANIFEST
-common_utils.js
-exploit_haveABadTime.js
-exploit_setAttributeNodeNS.js
-index.html
-kernel.js
-rop.js
-syscalls.js
-userland.js
