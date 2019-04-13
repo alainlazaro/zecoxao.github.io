@@ -1,66 +1,15 @@
-window.syscalls = {};
+window.nameforsyscall = swapkeyval(window.syscallnames);
+window.syscalls       = {};
 
-/* These are the offsets in libkernel for system call wrappers */
-window.syscallMap =
-{
-  '3.55':
-  {
-    3: 0xAB20, // sys_read
-    4: 0xAB40, // sys_write
-    5: 0xAB60, // sys_open
-    6: 0xAB80, // sys_close
-    20: 0xACE0, // sys_getpid
-    23: 0xAD40, // sys_setuid
-    24: 0xAD60, // sys_getuid
-    50: 0xDA10, // sys_setlogin
-    54: 0xB0A0, // sys_ioctl
-    73: 0xB1E0, // sys_munmap
-    74: 0xB200, // sys_mprotect
-    97: 0xB3E0, // sys_socket
-    98: 0xB400, // sys_connect
-    203: 0xB900, // sys_mlock
-    324: 0xB920, // sys_mlockall
-    362: 0xBF40, // sys_kqueue
-    363: 0xBF60, // sys_kevent
-    477: 0xB1C0, // sys_mmap
-    557: 0xCB80, // Kernel Exploit Free P1 "sys_namedobj_create"
-    558: 0xCBA0, // Kernel Exploit Free P3 "sys_namedobj_delete"
-	591: 0xCF80, // sys_dynlib_dlsym
-    594: 0xCFE0, // sys_dynlib_load_prx
-    601: 0xD0C0, // Kernel Exploit Free P2 "sys_mdbg_service"
-    632: 0xD4A0, // Kernel Exploit Leak P1 "sys_thr_suspend_ucontext"
-    633: 0xD4C0, // Kernel Exploit Leak P3 "sys_thr_resume_ucontext"
-    634: 0xD4E0, // Kernel Exploit Leak P2 "sys_thr_get_ucontext"
-  },
-  '4.05':
-  {
-    3: 0x25F0, // sys_read
-    4: 0x2730, // sys_write
-    5: 0x2570, // sys_open
-    6: 0x24D0, // sys_close
-    20: 0x06F0, // sys_getpid
-    23: 0x0710, // sys_setuid
-    24: 0x0730, // sys_getuid
-    50: 0x0640, // sys_setlogin
-    54: 0x0970, // sys_ioctl
-    73: 0x09F0, // sys_munmap
-    74: 0x0A10, // sys_mprotect
-    97: 0x0B70, // sys_socket
-    98: 0x24F0, // sys_connect
-    203: 0x1030, // sys_mlock
-    324: 0x1230, // sys_mlockall
-    362: 0x1390, // sys_kqueue
-    363: 0x13B0, // sys_kevent
-    477: 0x27B0, // sys_mmap
-    557: 0x1AF0, // Kernel Exploit Free P1 "sys_namedobj_create"
-    558: 0x1B10, // Kernel Exploit Free P3 "sys_namedobj_delete"
-	591: 0x1D50, // sys_dynlib_dlsym
-    594: 0x1DB0, // sys_dynlib_load_prx
-    601: 0x1E70, // Kernel Exploit Free P2 "sys_mdbg_service"
-    632: 0x21D0, // Kernel Exploit Leak P1 "sys_thr_suspend_ucontext"
-    633: 0x21F0, // Kernel Exploit Leak P3 "sys_thr_resume_ucontext"
-    634: 0x2210, // Kernel Exploit Leak P2 "sys_thr_get_ucontext"
+/* Get syscall name by index */
+function swapkeyval(json){
+  var ret = {};
+  for(var key in json){
+    if (json.hasOwnProperty(key)) {
+      ret[json[key]] = key;
+    }
   }
+  return ret;
 }
 
 /* A long ass map of system call names -> number, you shouldn't need to touch this */
@@ -73,13 +22,8 @@ window.syscallnames =
   "sys_open": 5,
   "sys_close": 6,
   "sys_wait4": 7,
-  "sys_creat": 8,
-  "sys_link": 9,
   "sys_unlink": 10,
-  "sys_execv": 11,
   "sys_chdir": 12,
-  "sys_fchdir": 13,
-  "sys_mknod": 14,
   "sys_chmod": 15,
   "sys_getpid": 20,
   "sys_setuid": 23,
@@ -98,7 +42,6 @@ window.syscallnames =
   "sys_kill": 37,
   "sys_stat": 38,
   "sys_getppid": 39,
-  "sys_lstat": 40,
   "sys_dup": 41,
   "sys_pipe": 42,
   "sys_getegid": 43,
@@ -128,7 +71,7 @@ window.syscallnames =
   "sys_setpriority": 96,
   "sys_socket": 97,
   "sys_connect": 98,
-  /*"sys_getpriority": 100,
+  "sys_getpriority": 100,
   "sys_send": 101,
   "sys_recv": 102,
   "sys_bind": 104,
@@ -166,7 +109,7 @@ window.syscallnames =
   "sys_fpathconf": 192,
   "sys_getrlimit": 194,
   "sys_setrlimit": 195,
-  "sys_getdirentries": 196,*/
+  "sys_getdirentries": 196,
   "sys___sysctl": 202,
   "sys_mlock": 203,
   "sys_munlock": 204,
@@ -234,6 +177,7 @@ window.syscallnames =
   "sys_thr_wake": 443,
   "sys_kldunloadf": 444,
   "sys__umtx_op": 454,
+  "sys__umtx_op": 454,
   "sys_thr_new": 455,
   "sys_sigqueue": 456,
   "sys_thr_set_name": 464,
@@ -268,7 +212,7 @@ window.syscallnames =
   "sys_evf_set": 544,
   "sys_evf_clear": 545,
   "sys_evf_cancel": 546,
-  "sys_query_memory_protection": 547,
+  "sys_query_memory_protection": 47,
   "sys_batch_map": 548,
   "sys_osem_create": 549,
   "sys_osem_delete": 550,
@@ -330,8 +274,8 @@ window.syscallnames =
   "sys_is_development_mode": 606,
   "sys_get_self_auth_info": 607,
   "sys_dynlib_get_info_ex": 608,
-  "sys_budget_getid": 609,
   "sys_budget_get_ptype": 610,
+  "sys_budget_getid": 609,
   "sys_get_paging_stats_of_all_threads": 611,
   "sys_get_proc_type_info": 612,
   "sys_get_resident_count": 613,
@@ -356,7 +300,7 @@ window.syscallnames =
   "sys_thr_suspend_ucontext": 632,
   "sys_thr_resume_ucontext": 633,
   "sys_thr_get_ucontext": 634,
-  /*"sys_thr_set_ucontext": 635,
+  "sys_thr_set_ucontext": 635,
   "sys_set_timezone_info": 636,
   "sys_set_phys_fmem_limit": 637,
   "sys_utc_to_localtime": 638,
@@ -393,17 +337,5 @@ window.syscallnames =
   "sys_aio_submit_cmd": 669,
   "sys_aio_init": 670,
   "sys_get_page_table_stats": 671,
-  "sys_dynlib_get_list_for_libdbg": 672*/
+  "sys_dynlib_get_list_for_libdbg": 672
 }
-
-
-/* Get syscall name by index */
-function swapkeyval(json) {
-  var ret = {};
-  for (var key in json) {
-    if (json.hasOwnProperty(key))
-      ret[json[key]] = key;
-  }
-  return ret;
-}
-window.nameforsyscall = swapkeyval(window.syscallnames);
