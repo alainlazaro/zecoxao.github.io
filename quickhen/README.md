@@ -1,4 +1,4 @@
-# PS4 4.55-5.07 Kernel Exploit
+# PS4 3.55-5.07 Kernel Exploit
 ---
 ## Summary
 In this project you will find a full implementation of the second "bpf" kernel exploit for the PlayStation 4 on <=5.07.
