@@ -1198,7 +1198,7 @@ function stage2_ () {
 		alert("Launching kexploit");
 		if (window.ps4_fw <= 370)
 			kernExploit_bpf_race_old();
-		if (window.ps4_fw <= 407)
+		else if (window.ps4_fw <= 407)
 			kernExploit_namedobj();
 		else if (window.ps4_fw <= 455)
 			kernExploit_bpf_race();
