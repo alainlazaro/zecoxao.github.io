@@ -1216,7 +1216,7 @@ function stage2_ () {
 	if (testMira == '0')
 		alert("Mira is loaded");
 	
-	trydlsym();
+	//trydlsym();
 	
 	if (fwFromUA == "5.05") {
 		//runPayload("kdumper.bin");
