@@ -1268,7 +1268,7 @@ function stage2_ () {
 				p.syscall("sys_mprotect", shellbuf, 0x4000, 7);
 				//p.fcall(window.gadgets["createThread"], shellbuf, 0, p.stringify("loader"));
 				var thread_id = p.malloc(0x08);
-				alert(p.fcall(window.gadgets["scePthreadCreate"], thread_id, 0, shellbuf, 0, p.stringify("loader")));
+				p.fcall(window.gadgets["scePthreadCreate"], thread_id, 0, shellbuf, 0, p.stringify("loader"));
 				awaitpl(); // Awaiting payload message
 			} catch (e) { alert(e); }
 		}
